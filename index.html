@@ -201,7 +201,7 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
   <div class="divider"></div>
 
   <section class="sec">
-    <div class="sec-head"><h2>할인율 TOP 3</h2><small>밀어서 보기</small></div>
+    <div class="sec-head"><h2>가장 저렴한 TOP 3</h2><small>밀어서 보기</small></div>
     <div class="top3" id="top3"></div>
   </section>
 
@@ -288,7 +288,7 @@ document.getElementById("count").textContent = items.length + "개";
 document.getElementById("statsLine").hidden = false;
 
 // top3
-const byRate = [...items].sort((a,b) => b.rate - a.rate);
+const byRate = [...items].sort((a,b) => a.sale - b.sale || b.rate - a.rate);
 document.getElementById("top3").innerHTML = byRate.slice(0,3).map((d,i) => `
   <a class="tcard" ${linkAttrs(d)}>
     <span class="rank">${i+1}위</span>
