@@ -88,6 +88,46 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .sec-head small{font-size:14px;color:var(--g600)}
 @media (hover:hover) and (pointer:fine){.sec-head small{display:none}}
 
+/* md pick */
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+.md-sec[hidden]{display:none}
+.md-sub{padding:0 24px 14px;margin-top:-8px;font-size:13.5px;line-height:1.5;color:var(--g600)}
+.md{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 18px 6px;scrollbar-width:none}
+.md::-webkit-scrollbar{display:none}
+.mcard{flex:0 0 calc(100% - 28px);scroll-snap-align:center;position:relative;display:block;border-radius:20px;padding:2px;
+  background:conic-gradient(from var(--ang),var(--md-a),var(--md-b),var(--md-c),var(--md-b),var(--md-a));
+  animation:mdspin 8s linear infinite;box-shadow:0 6px 20px var(--md-shadow);transition:transform .2s var(--ease-out)}
+.mcard:active{transform:scale(.985)}
+@keyframes mdspin{to{--ang:360deg}}
+.mcard .in{border-radius:18px;background:var(--card);padding:16px 16px 14px;height:100%}
+.mtop{display:flex;gap:14px;align-items:flex-start}
+.mthumb{flex:0 0 112px;height:112px;border-radius:14px;background:#fff;overflow:hidden;position:relative;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+.mthumb img{width:100%;height:100%;object-fit:contain}
+.mthumb::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);transform:translateX(-120%);animation:mdsheen 5.5s var(--ease-out) infinite 1.2s}
+@keyframes mdsheen{0%,62%{transform:translateX(-120%)}82%,100%{transform:translateX(120%)}}
+.mpick{position:absolute;left:6px;top:6px;height:22px;padding:0 7px;border-radius:6px;background:#191F28;color:#F5D58A;font-size:11px;font-weight:800;letter-spacing:.04em;display:flex;align-items:center;z-index:1}
+.minfo{min-width:0;flex:1}
+.mmeta{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--g600);font-weight:600}
+.mmeta .star{color:#E5A50A}
+.mmeta b{color:var(--g800);font-weight:700}
+.mname{margin-top:4px;font-size:15px;line-height:1.4;font-weight:600;color:var(--g900);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mcard .price-row{margin-top:6px;flex-wrap:wrap;row-gap:2px}
+.mcard .rate{font-size:18px;font-weight:800}
+.mcard .price{font-size:18px;font-weight:800;font-variant-numeric:tabular-nums}
+.mcard .sub{margin-top:2px}.mcard .sub .wow{margin-left:0}
+.mpros{list-style:none;margin-top:14px;padding:12px 14px;border-radius:14px;background:var(--g50);display:grid;gap:8px}
+.mpros li{display:flex;gap:8px;font-size:14px;line-height:1.45;color:var(--g800)}
+.mpros li::before{content:"";flex:0 0 16px;height:16px;margin-top:2px;border-radius:50%;background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.8' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.mcon{margin-top:8px;padding:0 2px;font-size:12.5px;line-height:1.5;color:var(--g600)}
+.mnote{margin-top:12px;display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.55;color:var(--g700)}
+.mnote span{flex:0 0 auto;height:22px;padding:0 8px;border-radius:6px;background:var(--md-tag-bg);color:var(--md-tag);font-size:11.5px;font-weight:700;display:flex;align-items:center;margin-top:1px}
+.mdots{display:flex;justify-content:center;gap:6px;padding:10px 0 2px}
+.mdots i{width:6px;height:6px;border-radius:3px;background:var(--g300);transition:width .25s var(--ease-out),background .25s var(--ease-out)}
+.mdots i.on{width:18px;background:var(--g800)}
+:root{--md-a:#D7E6FF;--md-b:#F3DFA8;--md-c:#BFD7FF;--md-shadow:rgba(49,130,246,.10);--md-tag:#8A6100;--md-tag-bg:#FFF4D6}
+@media (prefers-color-scheme:dark){:root{--md-a:#2A3A55;--md-b:#6B5A2E;--md-c:#2F4C7A;--md-shadow:rgba(0,0,0,.35);--md-tag:#F5D58A;--md-tag-bg:#3A3220}.mthumb::after{background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%)}}
+@media (hover:hover) and (pointer:fine){.md{scrollbar-width:thin;padding-bottom:12px}.md::-webkit-scrollbar{display:block;height:6px}.md::-webkit-scrollbar-thumb{background:var(--g300);border-radius:3px}}
+
 /* top3 carousel */
 .top3{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 12px 4px;scrollbar-width:none}
 .top3::-webkit-scrollbar{display:none}
@@ -200,6 +240,15 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
 
   <div class="divider"></div>
 
+  <section class="sec md-sec" id="mdSec" hidden>
+    <div class="sec-head"><h2>오늘의 MD 추천</h2><small>밀어서 보기</small></div>
+    <p class="md-sub">2만원 넘는 특가 중 구매 후기 많고 평점 높은 상품만 골라, 리뷰에서 자주 말하는 장점을 정리했어요</p>
+    <div class="md" id="md" aria-roledescription="carousel"></div>
+    <div class="mdots" id="mdDots" aria-hidden="true"></div>
+  </section>
+
+  <div class="divider"></div>
+
   <section class="sec">
     <div class="sec-head"><h2>가장 저렴한 TOP 3</h2><small>밀어서 보기</small></div>
     <div class="top3" id="top3"></div>
@@ -252,6 +301,7 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
 
 <script>
 const DATA = [{"id":"9617033484","code":"iodk6KsyaW","cat":"생활","name":"이노패치 원적외선 근육관절 패치, 1개, 30개입","sale":10900,"orig":84800,"img":"image/vendor_inventory/8b14/1269c7fab9b5d61be20616b0f5963425e28e0fbeacb306b0c97770853de6.png","pt":"wow"},{"id":"9625005379","code":"iodleGEZIO","cat":"가전","name":"밸류엠 PD 22.5W 고속충전 C타입 트윈 케이블 일체형 미니 보조배터리 10000mAh, 블랙, VM-PA10P23W2C","sale":16140,"orig":76330,"img":"image/retail/images/2026/06/29/16/8/772df780-9d27-487f-b35c-bd706a89d140.jpg","pt":"wow"},{"id":"7723516663","code":"iodll8umlM","cat":"주방","name":"바겐슈타이거 스텐 304 펀칭찜기 1단, 14cm","sale":8900,"orig":39900,"img":"image/retail/images/66417885246282-215428c9-5c5c-4e96-acd9-53d0cc43d78c.jpg","pt":"wow"},{"id":"9479077135","code":"iodltRuJoG","cat":"뷰티","name":"존바바토스 아티산 블루 오 드 뚜왈렛, 125ml","sale":35630,"orig":149000,"img":"image/vendor_inventory/image_audit/prod/8b3ec5b2-a669-49ad-9a04-11f547a985fe_fixing_v2.png","pt":"wow"},{"id":"9101931090","code":"iodlBNfp4m","cat":"패션","name":"르까프 후드 바라클라바 LE5O011BLK, 블랙","sale":7410,"orig":29900,"img":"image/retail/images/1440088866866125-5f77ad4f-1253-44d7-96fc-6ff5fa4586b5.jpg","pt":"wow"},{"id":"9368865420","code":"iodlKxbbOK","cat":"뷰티","name":"제이엠솔루션 더 이펙트 히알루로닉 수분 세럼, 2개, 30ml","sale":9900,"orig":39600,"img":"image/retail/images/2026/01/29/17/0/bcd2b12c-1b99-4378-9f4b-399df3dff832.jpg","pt":"wow"},{"id":"8394671274","code":"iodlSBko0q","cat":"가전","name":"Hanil 온열 찜질기 블랙 라지 HP-4085B, 라지(85 x 40 cm)","sale":52000,"orig":207300,"img":"image/retail/images/2024/06/05/9/2/c0a66b6d-2e84-49f0-bfbe-3f011a43e031.jpg","pt":"wow"},{"id":"17347528","code":"iodlZ27kke","cat":"주방","name":"PN풍년 하이클래드 파워 IH 압력솥 10인용, 6L, 실버","sale":125990,"orig":488300,"img":"image/retail/images/92987015051084-1518df72-484c-4e78-9ab7-bc0077da5ea5.jpg","pt":"wow"},{"id":"8758755740","code":"iodl7rzWHA","cat":"주방","name":"테팔 인덕션 티타늄 1X 데일리 컴포트 프라이팬, 28cm","sale":25980,"orig":98000,"img":"image/retail/images/2025/05/07/14/3/f4024daf-9035-4009-8450-7123872220d1.jpg","pt":"wow"},{"id":"8529746863","code":"iodmeQ8wh2","cat":"식품","name":"맛꾼 파손보상 촉촉쫄깃 맥반석 구운계란 찜질방, 30구","sale":9400,"orig":35000,"img":"image/vendor_inventory/c8e4/c05a7b5b728ea259ce8027b9f63d3fab9a5779c54fb89465bed7e32ae4a2.jpg","pt":"wow"},{"id":"6101620244","code":"imyA6GRMZM","cat":"생활","name":"코멧 니트릴장갑 블랙, L, 200개입","sale":11990,"orig":39900,"img":"image/retail/images/13483270420678-4eaa5b22-fbdf-4d52-b78b-098788e71c76.jpg","pt":"wow"},{"id":"8222210264","code":"iodmtHuHh6","cat":"가전","name":"필립스 2000 시리즈 보이는 에어프라이어 4.2L, NA220/00, 블랙","sale":60710,"orig":199300,"img":"image/retail/images/1469166397053158-e1b7b31f-521a-4fbf-ab61-6ee230404ea0.png","pt":"wow"},{"id":"6892490895","code":"iodmA72AMK","cat":"주방","name":"포트메리온 보타닉가든 라자냐 접시, 혼합색상","sale":18720,"orig":58900,"img":"image/retail/images/83989595150989-9fb6314e-2608-4eee-9ee8-60d90dd85b22.jpg","pt":"wow"},{"id":"9595857518","code":"iodmIzhF1w","cat":"가전","name":"누아트 C타입 스테레오 이어팟 디자인 오픈형 유선 이어폰, 도트 핑크, NUT-WEBNT2605-CT","sale":12900,"orig":39900,"img":"image/retail/images/2026/06/10/16/7/64030225-5c75-4ac4-b35f-ffd226fe21be.jpg","pt":"wow"},{"id":"9711454701","code":"iodmQyWPzo","cat":"패션","name":"오야니 여성용 네오 몰리 백팩 OBSBBP29_009","sale":84223,"orig":259000,"img":"image/retail/images/2026/08/28/9/5/c3c2eef8-9078-42cd-942b-2a0ea4e27b56.jpg","pt":"wow"},{"id":"9782684105","code":"iodm62DN0u","cat":"식품","name":"티젠 콤부차 블루베리, 5g, 1개, 30개입","sale":6910,"orig":21000,"img":"image/retail/images/2026/10/19/11/4/5538210a-bb7a-433f-829a-1b7af91fc81f.jpg","pt":"wow"},{"id":"8670234158","code":"iodnmGQKA0","cat":"주방","name":"쿡셀 인덕션 7세대 IH 세라믹 블랙에디션 프라이팬 7종 세트, 혼합색상, 프라이팬 28cm + 소테팬 28cm + 궁중팬 2","sale":179000,"orig":519000,"img":"image/retail/images/117028983548769-977caf04-12b2-432f-985b-b796d32202c7.jpg","pt":"wow"},{"id":"9138748630","code":"iodnt47Q28","cat":"가전","name":"블라우풍트 오픈픽 클립 Ai ENC 이어커프 오픈형 블루투스 이어폰 BLP-OE671 블랙 22시간 방수가능","sale":29900,"orig":85800,"img":"image/retail/images/222427432485143-14a0bde7-75ce-4f64-afd2-d0c0081f79c1.jpg","pt":"wow"},{"id":"127817014","code":"iodnByWpAy","cat":"주방","name":"도블레 칼집나지 않는 항균도마, 차콜","sale":14550,"orig":41000,"img":"image/retail/images/272043379793492-c75b63b8-4747-4487-afe4-a0b3a0d665de.jpg","pt":"wow"},{"id":"8134954250","code":"iodnIUy2Fg","cat":"식품","name":"익스트림 올인원 포 맨 멀티비타민, 30회분","sale":26900,"orig":75800,"img":"image/retail/images/18599164913266-4643237f-af88-4ca5-91d0-6dd923145a00.jpg","pt":"wow"},{"id":"1354114584","code":"iodnQQR7v2","cat":"주방","name":"글라스락 렌지쿡 촉촉한 햇밥용기 원형 무드브릭, 6개, 350ml","sale":20950,"orig":58500,"img":"image/1025_amir_coupang_oct_80k/ac56/97ab5df1c6026f1d2bdffb15183fbdfd217d88dee465bb9f5f5e1d01999f.jpg","pt":"wow"},{"id":"8987771610","code":"iodnYrkTqS","cat":"뷰티","name":"제이멜라 인 프랑스 퓨어 바디 워시 블러썸 츄, 1L, 2개","sale":9900,"orig":27600,"img":"image/retail/images/132242025606134-0eb0bd85-f1a8-45f0-92d8-158e9d748378.jpg","pt":"wow"},{"id":"8548508229","code":"iododqx9Ua","cat":"유아·반려","name":"Bebeen 120 유아물티슈 캡형, 50g, 120매, 10개","sale":9600,"orig":25900,"img":"image/retail/images/1423721803262108-18b9773d-b5e2-4ccc-b3c7-cb3ed11ad1af.jpg","pt":"wow"},{"id":"6671243928","code":"iodokTUXzo","cat":"생활","name":"가그린 제로 구강청결제, 1.2L, 2개","sale":8890,"orig":23800,"img":"image/retail/images/99578859568325-e11ac827-3f41-4db5-9832-c243d5549187.png","pt":"wow"},{"id":"9296665118","code":"iodos6l3Ya","cat":"식품","name":"비타500 이온킥 제로 음료, 1.5L, 12개","sale":13480,"orig":36000,"img":"image/retail/images/2026/03/11/14/6/d6bfcaec-2415-4153-af85-283ea8f5905f.jpg","pt":"wow"},{"id":"7239236782","code":"iodoA5kYns","cat":"식품","name":"유로푸드 유기농 레몬주스, 500ml, 2개","sale":9050,"orig":24000,"img":"image/retail/images/97926624493614-a16df7d1-6099-48f4-a3d7-42cafc7f27fb.jpg","pt":"wow"},{"id":"8660424475","code":"iodoIyBpMO","cat":"뷰티","name":"메디필 콜라겐 물광 랩핑 마스크팩, 1개입","sale":14360,"orig":38000,"img":"image/retail/images/2025/07/17/14/0/23493c23-4ff1-46e8-9720-e7a321da8fa2.jpg","pt":"wow"},{"id":"8971726601","code":"iodo5KVlaS","cat":"생활","name":"퍼실 딥클린 초미세세탁 라벤더젤 맥스 드럼용 액체세제 본품, 2.5L","sale":12410,"orig":31900,"img":"image/retail/images/2026/03/04/18/7/b9ee3a28-e1aa-40dd-8364-a50beb2bb1f8.jpg","pt":"wow"},{"id":"8633922167","code":"iodpkKmGk0","cat":"생활","name":"코멧 더 포켓 미니 물티슈, 40세트, 8매, 45g","sale":9990,"orig":24900,"img":"image/retail/images/17941337702230-54c8918d-14c3-4dfd-ab73-a902e3b8a0ac.png","pt":"wow"},{"id":"6956304173","code":"iodpssd6LA","cat":"주방","name":"EZn이지엔 위생 롤백 소형 17cm x 25cm 200매 + 중형 25cm x 35cm 200매 + 대형 30cm x 40c","sale":8290,"orig":20600,"img":"image/retail/images/104662598395331-3bd36977-223b-42b5-ad23-059fcc2af9f5.jpg","pt":"wow"},{"id":"9171562095","code":"iodpz9Ouaa","cat":"주방","name":"키친아트 뉴 티타늄 코팅 궁중팬, 1개, 28cm","sale":10480,"orig":25980,"img":"image/retail/images/66630454536609-a910db2e-06d6-4fbd-b66f-9c1a7096fd58.jpg","pt":"wow"},{"id":"202217052","code":"iodpHUddDg","cat":"식품","name":"닥터스베스트 글루코사민 콘드로이친 MSM 캡슐, 120정","sale":10840,"orig":26690,"img":"image/vendor_inventory/image_audit/prod/70ed1248-7b68-47e7-8dea-e3b863f0722c_fixing_v2.png","pt":"wow"},{"id":"274732731","code":"iodpPO9PgW","cat":"생활","name":"데얼스 모노클리어앨범 4 x 6 4권 + 케이스, 480매","sale":13610,"orig":33500,"img":"image/product/image/vendoritem/2019/08/14/5196391754/f142780e-9038-402b-ab37-a8ea6b27033c.jpg","pt":"wow"},{"id":"8209850103","code":"imyEdi8Cya","cat":"뷰티","name":"티스 딥 오프 클렌징 오일, 280ml, 2개","sale":14640,"orig":36000,"img":"image/1025_amir_coupang_oct_80k/7ff7/b81c5f96eb2c5caff74f5d6f942c0d76611517806acfab17f273245a7a75.jpg","pt":"wow"},{"id":"8785386940","code":"iodpYuL5C8","cat":"패션","name":"워터프론트 프리미엄 초경량 미니 UV 차단 3단 우산 양산 겸용 + 커버포함 U350-0283","sale":10610,"orig":26000,"img":"image/retail/images/94443447843208-8031dd26-3cb5-4220-9033-9295253a327e.png","pt":"wow"},{"id":"31754974","code":"iodqdBFkHc","cat":"생활","name":"아이리스 시스템 수납박스 슬라이딩 서랍장 BC-500, 1단, 클리어화이트","sale":39900,"orig":95600,"img":"image/retail/images/234378239189387-046785dd-9868-45d8-a450-d02d91fa9e0d.jpg","pt":"wow"},{"id":"8554640218","code":"iodqlY3Kh2","cat":"가전","name":"YINTO 고속충전 보조배터리 10000mAh C핀, JM1, 블랙","sale":11340,"orig":27000,"img":"image/retail/images/77604861031291-612575e7-fdf3-4515-aeef-bb34cb94432d.jpg","pt":"wow"},{"id":"274733561","code":"iodqtXR6rI","cat":"가전","name":"HanilMedical 프리미엄 워셔블 온수매트 자전거, 싱글(100 x 200 cm)","sale":94000,"orig":220000,"img":"image/retail/images/187312858577352-0039881c-e342-4564-b1df-934fe4f88b80.jpg","pt":"wow"},{"id":"6174360973","code":"iodqCa32ui","cat":"뷰티","name":"닥터에이지 시카 리페어크림, 50ml, 2개","sale":15720,"orig":36000,"img":"image/retail/images/172980809650853-08254263-5ee6-47e6-bdd9-bb47e2099b77.jpg","pt":"wow"},{"id":"5205138931","code":"iodqJz5Q7M","cat":"뷰티","name":"이니스프리 노세범 미네랄 파우더 5g, 2개","sale":7990,"orig":18000,"img":"image/retail/images/24710214558979-e5c89577-9ecf-408e-8ae8-715dc90ea9fb.jpg","pt":"wow"},{"id":"9706132723","code":"iodqQ0kghg","cat":"패션","name":"크로커다일레이디 여성용 탈부착 니트 카라 트위드 자켓 CLDWJK104","sale":59590,"orig":133500,"img":"image/retail/images/59835120401024-fc51b1d3-7a85-45ab-aea2-f09b1289d271.jpg","pt":"normal"},{"id":"58060858","code":"iodqYR6y72","cat":"레저","name":"아이워너 흠집방지 안전철봉V2, 혼합색상","sale":12900,"orig":28300,"img":"image/1025_amir_coupang_oct_80k/f3c6/e269d27cf67f5e06f36be9f19238587f95829d0bd9654b69aed2e558e98a.jpg","pt":"wow"},{"id":"8788466505","code":"iodq6a9rQ4","cat":"식품","name":"정순애김치 당일제조 전라도식 총각김치, 1개, 3kg","sale":18810,"orig":41120,"img":"image/vendor_inventory/18cc/7d97894b115b01a319072fe42192b99acb973fc628ba69e5174939e1249a.png","pt":"wow"},{"id":"9712083410","code":"iodrdEnI0i","cat":"패션","name":"리복 아동용 스웨트 조거 팬츠 RKCCPTF31010","sale":17900,"orig":39000,"img":"image/rs_quotation_api/mupmwlw1/97475afbe1824c06aa94ff0e72e4c79a.jpg","pt":"wow"},{"id":"7500636914","code":"iodrsx5YHs","cat":"유아·반려","name":"리틀클라우드 아기와 놀아주는 오리친구 오순이 멜로디완구, 혼합색상","sale":17170,"orig":37300,"img":"image/vendor_inventory/3e3f/0d7d6ddc35e945fc1b75e5a04edadef1a44f1f7d673f239593d7bb7db79a.jpg","pt":"wow"},{"id":"8042727154","code":"iodrAf32qW","cat":"생활","name":"아브카 뿌리는 다리미 핌 스프레이 500ml","sale":7840,"orig":17000,"img":"image/retail/images/1026944081015615-63da36c1-8aa6-40b0-b4e5-5d4a6af42b20.png","pt":"wow"},{"id":"9640271759","code":"iodrH34yv6","cat":"가전","name":"샥즈 오픈핏 2+ T921 오픈형 블루투스 이어폰, 블랙BK","sale":133400,"orig":289000,"img":"image/vendor_inventory/image_audit/prod/57a82264-39ba-420e-b613-a9d3e1fa5d48_fixing_v2.png","pt":"wow"},{"id":"9185737514","code":"iodrPq2iCO","cat":"생활","name":"스너글 건조기용 드라이시트 블루스파클 플러스 상쾌한 포근향 본품, 120개입","sale":12500,"orig":26900,"img":"image/retail/images/2025/11/13/15/9/70d0174f-8a08-4eda-aa85-c1395b2647d9.jpg","pt":"wow"},{"id":"7828210234","code":"iodrXpgnoi","cat":"생활","name":"블레딕홈 럭스 사계절 워셔블 비정형 타원형 러그","sale":18240,"orig":38800,"img":"image/rs_quotation_api/9eaphrkj/dc2b79b4c930416abafabfe71899f794.jpg","pt":"wow"},{"id":"8333608415","code":"iodr465UBM","cat":"유아·반려","name":"라르트 충치예방 푸카 어린이가글 일회용 스틱 사과향 30p, 3개, 330ml","sale":22320,"orig":47400,"img":"image/retail/images/6ef8346a-19af-4201-b138-abc3ef2ee9937144324162378713876.png","pt":"wow"}];
+const MD = [{"id": "8758755740", "code": "iodl7rzWHA", "cat": "주방", "name": "테팔 인덕션 티타늄 1X 데일리 컴포트 프라이팬, 28cm", "sale": 25980, "orig": 98000, "img": "image/retail/images/2025/05/07/14/3/f4024daf-9035-4009-8450-7123872220d1.jpg", "pt": "wow", "rc": 6210, "ra": 4.7, "pros": ["기름을 조금만 둘러도 계란이 미끄러지듯 안 눌어붙어요", "열이 빠르고 고르게 퍼져서 인덕션에서도 예열이 금방이에요", "손잡이가 잡기 편하다는 평이 가장 많아요"], "con": "무게는 '생각보다 묵직하다'는 의견도 있어요", "note": "새 기능보다 기본기가 탄탄해서, 코팅 수명이 다하면 다시 테팔로 바꾸는 분이 많아요."}, {"id": "9479077135", "code": "iodltRuJoG", "cat": "뷰티", "name": "존바바토스 아티산 블루 오 드 뚜왈렛, 125ml", "sale": 35630, "orig": 149000, "img": "image/vendor_inventory/image_audit/prod/8b3ec5b2-a669-49ad-9a04-11f547a985fe_fixing_v2.png", "pt": "wow", "rc": 7168, "ra": 4.7, "pros": ["첫 향은 시트러스처럼 시원하고, 시간이 지나면 은은한 우디향이 남아요", "향이 과하지 않아 아버지·남편 선물로 성공했다는 후기가 많아요", "125ml 대용량에 손으로 엮은 듯한 병 디자인도 예뻐요"], "con": "오 드 뚜왈렛이라 지속력은 '적당하다'는 평도 절반이에요", "note": "튀지 않고 깔끔한 향이라, 남성 향수 선물이 고민될 때 많이들 고르는 향이에요."}, {"id": "6239624318", "code": "ioe5JU6xxI", "cat": "가전", "name": "필립스 소닉케어 3100 시리즈 전동칫솔, HX4031/21, 화이트", "sale": 47940, "orig": 80000, "img": "image/retail/images/318246980943476-c1e84653-c820-4dd6-8713-b49b41fef935.jpg", "pt": "wow", "rc": 12490, "ra": 4.7, "pros": ["양치 후 혀로 느껴질 만큼 치아가 매끈해져요", "세게 누르면 알려주는 압력 센서와 2분 타이머가 있어요", "가볍고 슬림해서 전동칫솔 입문용으로 부담 없어요"], "con": "처음엔 문지르지 않고 대고만 있는 방식에 적응이 필요해요", "note": "기능 많은 고가 모델 대신 꼭 필요한 것만 담아서, 써보고 가족 것까지 다시 사는 분이 많아요."}];
 const CDN = "https://thumbnail.coupangcdn.com/thumbnails/remote/";
 const won = n => n.toLocaleString("ko-KR") + "원";
 const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -286,6 +336,32 @@ document.getElementById("maxRate").textContent = Math.max(...rates) + "%";
 document.getElementById("avgRate").textContent = Math.round(rates.reduce((a,b)=>a+b,0) / rates.length) + "%";
 document.getElementById("count").textContent = items.length + "개";
 document.getElementById("statsLine").hidden = false;
+
+// md pick
+const mdItems = (typeof MD !== "undefined" ? MD : []).map(d => ({...d, rate: Math.round((1 - d.sale / d.orig) * 100), url: "https://link.coupang.com/a/" + d.code}));
+if (mdItems.length) {
+  const box = document.getElementById("md"), dots = document.getElementById("mdDots");
+  box.innerHTML = mdItems.map((d,i) => `
+  <a class="mcard" ${linkAttrs(d)} aria-label="${i+1} / ${mdItems.length}">
+    <div class="in">
+      <div class="mtop">
+        <div class="mthumb"><span class="mpick">MD PICK</span>${img(d,"492x492ex")}</div>
+        <div class="minfo">
+          <div class="mmeta"><span>${esc(d.cat)}</span><span aria-hidden="true">·</span><span class="star">★</span><b>${d.ra.toFixed(1)}</b><span>리뷰 ${d.rc.toLocaleString("ko-KR")}개</span></div>
+          <div class="mname">${esc(d.name)}</div>
+          <div class="price-row"><span class="rate">${d.rate}%</span><span class="price">${won(d.sale)}</span></div>
+          <div class="sub"><s>${won(d.orig)}</s>${d.pt==="wow"?'<span class="wow">와우가</span>':""}</div>
+        </div>
+      </div>
+      <ul class="mpros">${d.pros.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
+      ${d.con ? `<p class="mcon">아쉬운 점 · ${esc(d.con)}</p>` : ""}
+      <p class="mnote"><span>MD 코멘트</span>${esc(d.note)}</p>
+    </div>
+  </a>`).join("");
+  dots.innerHTML = mdItems.map((_,i) => `<i${i?"":' class="on"'}></i>`).join("");
+  box.addEventListener("scroll", () => { const w = box.firstElementChild.offsetWidth + 12; const k = Math.round(box.scrollLeft / w); dots.querySelectorAll("i").forEach((x,j) => x.classList.toggle("on", j === k)); }, {passive:true});
+  document.getElementById("mdSec").hidden = false;
+}
 
 // top3
 const byRate = [...items].sort((a,b) => a.sale - b.sale || b.rate - a.rate);
@@ -368,9 +444,9 @@ document.getElementById("share").onclick = async () => {
 // analytics: 상품 클릭 이벤트
 document.addEventListener("click", e => {
   const a = e.target.closest("a[data-id]"); if (!a || typeof gtag !== "function") return;
-  const d = items.find(x => x.id === a.dataset.id); if (!d) return;
-  const section = a.closest(".top3") ? "top3" : "list";
-  const pos = [...document.querySelectorAll(section === "top3" ? ".top3 a[data-id]" : ".list a[data-id]")].indexOf(a) + 1;
+  const section = a.closest(".md") ? "md" : a.closest(".top3") ? "top3" : "list";
+  const d = (section === "md" ? mdItems : items).find(x => x.id === a.dataset.id); if (!d) return;
+  const pos = [...document.querySelectorAll("." + section + " a[data-id]")].indexOf(a) + 1;
   gtag("event", "deal_click", { item_id: d.id, item_name: d.name, item_category: d.cat, discount_rate: d.rate, price: d.sale, section, position: pos, filter_cat: state.cat, sort: state.sort, transport_type: "beacon" });
 });
 document.getElementById("share").addEventListener("click", () => { if (typeof gtag === "function") gtag("event", "share_click"); });
