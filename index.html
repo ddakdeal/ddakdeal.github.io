@@ -205,19 +205,67 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .xma-sec .pep-head h2{position:relative}
 .xma-sec .pep-head h2::before{content:"";position:absolute;left:-15px;top:-16px;width:26px;height:23px;transform:rotate(-24deg);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 28'%3E%3Cpath d='M4 22C6 10 14 2 24 4c4 1 6 6 5 10-3-3-7-3-9 0l6 8z' fill='%23D92B3A'/%3E%3Crect x='2' y='19.5' width='26' height='7' rx='3.5' fill='%23fff' stroke='%23E7DCD6'/%3E%3Ccircle cx='28.5' cy='15' r='3.4' fill='%23fff' stroke='%23E7DCD6'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 1px 1px rgba(0,0,0,.12))}
 .xma-sec .pep-dday{background:repeating-linear-gradient(135deg,#D92B3A 0 6px,#C21F2F 6px 12px)}
-.xma-sky{position:relative;height:58px;margin:-2px 0 2px;pointer-events:none}
-.xma-lights{position:absolute;left:0;right:0;bottom:0;height:26px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Cpath d='M0 3Q24 15 48 3T96 3' fill='none' stroke='%232E5E3E' stroke-width='1.4'/%3E%3Crect x='10.5' y='7' width='3' height='3' rx='.8' fill='%23556B5C'/%3E%3Cellipse cx='12' cy='14' rx='3.2' ry='4.6' fill='%23E5484D'/%3E%3Crect x='58.5' y='7' width='3' height='3' rx='.8' fill='%23556B5C'/%3E%3Cellipse cx='60' cy='14' rx='3.2' ry='4.6' fill='%23F5B83D'/%3E%3Crect x='34.5' y='7' width='3' height='3' rx='.8' fill='%23556B5C'/%3E%3Crect x='82.5' y='7' width='3' height='3' rx='.8' fill='%23556B5C'/%3E%3C/svg%3E") 0 0/96px 26px repeat-x}
-.xma-lights::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Ccircle cx='36' cy='14' r='7' fill='%232FB36A' opacity='.25'/%3E%3Cellipse cx='36' cy='14' rx='3.2' ry='4.6' fill='%232F9E5B'/%3E%3Ccircle cx='84' cy='14' r='7' fill='%23FFE7A0' opacity='.35'/%3E%3Cellipse cx='84' cy='14' rx='3.2' ry='4.6' fill='%23FFF4D6' stroke='%23E8C77A' stroke-width='.6'/%3E%3C/svg%3E") 0 0/96px 26px repeat-x;animation:xtw 1.8s ease-in-out infinite alternate}
-@keyframes xtw{from{opacity:.25}to{opacity:1}}
-.xma-sleigh{position:absolute;top:0;left:0;width:124px;height:50px;animation:xfly 16s linear infinite}
-.xma-sleigh svg{width:100%;height:100%;animation:xbob 1.6s ease-in-out infinite alternate}
-@keyframes xfly{from{transform:translateX(calc(100vw + 20px))}to{transform:translateX(-150px)}}
-@media (min-width:600px){@keyframes xfly{from{transform:translateX(620px)}to{transform:translateX(-150px)}}}
-@keyframes xbob{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(5px) rotate(2deg)}}
 @media (prefers-color-scheme:dark){
   .xma-sec{--pep-bg:#1D1618;--pep-stick:#fff;--pep-stick-o:.28;--pep-red:#C8323F;--pep-a:#5A262B;--pep-b:#24442F;--pep-c:#5A4A22;--pep-shadow:rgba(0,0,0,.35);--pep-tag:#8FE0AE;--pep-tag-bg:#1C3326;--xma-drift:#2C2427}
 }
-@media (prefers-reduced-motion:reduce){.xma-sleigh{left:auto;right:16px}}
+
+/* 기획전 공통 애니메이션 레인: 카드 줄 위 장식 줄(.ev-row) + 지나가는 주인공(.ev-actor) */
+.ev-sky{position:relative;height:58px;margin:-2px 0 2px;pointer-events:none;overflow:hidden}
+.ev-row{position:absolute;left:0;right:0;bottom:0;height:26px;background:0 0/96px 26px repeat-x}
+.ev-row::after{content:"";position:absolute;inset:0;background:0 0/96px 26px repeat-x;animation:xtw 1.8s ease-in-out infinite alternate}
+@keyframes xtw{from{opacity:.25}to{opacity:1}}
+.ev-actor{position:absolute;top:0;right:16px;width:124px;height:50px;animation:evfly 16s linear infinite}
+.ev-actor svg{width:100%;height:100%;overflow:visible;animation:xbob 1.6s ease-in-out infinite alternate}
+.ev-actor.roll{width:40px;height:40px;top:12px}.ev-actor.roll svg{animation:evroll 1.6s linear infinite}
+.ev-actor.hop{width:38px;height:38px;top:10px}.ev-actor.hop svg{animation:evhop .7s ease-in-out infinite alternate}
+.ev-actor.still{animation:none;left:auto;right:12px;width:150px;height:56px;top:-4px}.ev-actor.still svg{animation:none}
+@keyframes evfly{from{left:100%}to{left:-150px}}
+@keyframes xbob{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(5px) rotate(2deg)}}
+@keyframes evroll{to{transform:rotate(-360deg)}}
+@keyframes evhop{from{transform:translateY(8px) scaleY(.94)}to{transform:translateY(-6px)}}
+.ev-stm,.ev-bub,.ev-pop,.ev-tail{transform-box:fill-box;transform-origin:center}
+.ev-stm{animation:evstm 2.4s ease-out infinite;opacity:0}
+.ev-bub{animation:evbub 2.2s ease-out infinite;opacity:0}
+.ev-pop{animation:evpop 1.2s ease-in-out infinite alternate}
+.ev-tail{transform-origin:left center;animation:evtail .5s ease-in-out infinite alternate}
+.d2{animation-delay:.8s}.d3{animation-delay:1.6s}
+@keyframes evstm{0%{transform:translateY(6px);opacity:0}35%{opacity:.85}100%{transform:translateY(-8px);opacity:0}}
+@keyframes evbub{0%{transform:translateY(6px) scale(.6);opacity:0}30%{opacity:1}100%{transform:translateY(-14px) scale(1.1);opacity:0}}
+@keyframes evpop{from{transform:scale(.85)}to{transform:scale(1.15)}}
+@keyframes evtail{from{transform:scaleY(.8)}to{transform:scaleY(1.1)}}
+#seaSec .ev-row{animation:evwave 3.2s linear infinite}
+@keyframes evwave{to{background-position:96px 0}}
+.pep-head h2.ev-ico::before{content:"";display:inline-block;width:22px;height:22px;margin-right:6px;vertical-align:-3px;background:var(--ev-ico) center/contain no-repeat;animation:evwig 2.6s ease-in-out infinite;transform-origin:50% 80%}
+@keyframes evwig{0%,70%,100%{transform:rotate(0)}80%{transform:rotate(-12deg)}90%{transform:rotate(10deg)}}
+@media (prefers-reduced-motion:reduce){.ev-actor{left:auto!important}}
+#pepSec .ev-row{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Cpath d='M0 4Q24 9 48 4T96 4' fill='none' stroke='%23E8A0A0' stroke-width='1.2' stroke-dasharray='3 3'/%3E%3Cpath d='M12 19c-5-3-7-6-5-8.5 1.5-1.8 4-1 5 .8 1-1.8 3.5-2.6 5-.8 2 2.5 0 5.5-5 8.5z' fill='%23E5484D'/%3E%3Cpath d='M60 19c-5-3-7-6-5-8.5 1.5-1.8 4-1 5 .8 1-1.8 3.5-2.6 5-.8 2 2.5 0 5.5-5 8.5z' fill='%23F28AA0'/%3E%3C/svg%3E")}
+#pepSec .ev-row::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Cpath d='M36 19c-5-3-7-6-5-8.5 1.5-1.8 4-1 5 .8 1-1.8 3.5-2.6 5-.8 2 2.5 0 5.5-5 8.5z' fill='%23D92B3A'/%3E%3Cpath d='M84 19c-5-3-7-6-5-8.5 1.5-1.8 4-1 5 .8 1-1.8 3.5-2.6 5-.8 2 2.5 0 5.5-5 8.5z' fill='%23F7B6C4'/%3E%3C/svg%3E")}
+#sunSec .ev-row{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Cpath d='M0 13H96' stroke='%23B8C4EA' stroke-width='1.2' stroke-dasharray='2 4'/%3E%3Cpath d='M12 6l1.9 4.2 4.5.4-3.4 3 1 4.5-4-2.4-4 2.4 1-4.5-3.4-3 4.5-.4z' fill='%23F5C242'/%3E%3Cpath d='M60 6l1.9 4.2 4.5.4-3.4 3 1 4.5-4-2.4-4 2.4 1-4.5-3.4-3 4.5-.4z' fill='%238FA6E8'/%3E%3C/svg%3E")}
+#sunSec .ev-row::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Cpath d='M36 6l1.9 4.2 4.5.4-3.4 3 1 4.5-4-2.4-4 2.4 1-4.5-3.4-3 4.5-.4z' fill='%23F5B83D'/%3E%3Cpath d='M84 6l1.9 4.2 4.5.4-3.4 3 1 4.5-4-2.4-4 2.4 1-4.5-3.4-3 4.5-.4z' fill='%23FFE08A'/%3E%3C/svg%3E")}
+#fruSec .ev-row{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Cpath d='M0 8Q12 14 24 8T48 8T72 8T96 8' fill='none' stroke='%237DB45A' stroke-width='1.3'/%3E%3Cellipse cx='30' cy='11' rx='3' ry='1.6' fill='%237DB45A' transform='rotate(-25 30 11)'/%3E%3Cellipse cx='78' cy='11' rx='3' ry='1.6' fill='%237DB45A' transform='rotate(-25 78 11)'/%3E%3Ccircle cx='12' cy='17' r='5' fill='%23E5484D'/%3E%3Cpath d='M12 12v-2' stroke='%236B4A30' stroke-width='1.2'/%3E%3Ccircle cx='58' cy='16' r='2.4' fill='%238E5BC7'/%3E%3Ccircle cx='62' cy='16' r='2.4' fill='%238E5BC7'/%3E%3Ccircle cx='60' cy='19.5' r='2.4' fill='%237D4AB6'/%3E%3C/svg%3E")}
+#fruSec .ev-row::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Ccircle cx='36' cy='17' r='5' fill='%23F7931E'/%3E%3Cpath d='M36 12v-2' stroke='%236B4A30' stroke-width='1.2'/%3E%3Cpath d='M84 11c3 0 4 3 4 6s-2 5-4 5-4-2-4-5 1-6 4-6z' fill='%23E8D27A'/%3E%3C/svg%3E")}
+#meaSec .ev-row{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Crect x='0' y='9' width='96' height='2.4' fill='%235A4740'/%3E%3Crect x='0' y='15' width='96' height='2.4' fill='%235A4740'/%3E%3Cpath d='M6 8v12M30 8v12M54 8v12M78 8v12' stroke='%235A4740' stroke-width='1.6'/%3E%3C/svg%3E")}
+#meaSec .ev-row::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Ccircle cx='18' cy='18' r='6' fill='%23FF7A2F' opacity='0.55'/%3E%3Ccircle cx='42' cy='18' r='6' fill='%23FFB13D' opacity='0.5'/%3E%3Ccircle cx='66' cy='18' r='6' fill='%23FF5A2A' opacity='0.55'/%3E%3Ccircle cx='90' cy='18' r='6' fill='%23FFB13D' opacity='0.5'/%3E%3C/svg%3E")}
+#seaSec .ev-row{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Cpath d='M0 12q12-7 24 0t24 0 24 0 24 0' fill='none' stroke='%233FA9B5' stroke-width='2'/%3E%3Cpath d='M0 19q12-6 24 0t24 0 24 0 24 0' fill='none' stroke='%239AD8DE' stroke-width='1.6'/%3E%3C/svg%3E")}
+#seaSec .ev-row::after{display:none}
+#kimSec .ev-row{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Cpath d='M0 3Q24 7 48 3T96 3' fill='none' stroke='%239A7B55' stroke-width='1.3'/%3E%3Cpath d='M12 5c-1 5 0 11 3 15-4-2-6-8-5-15z' fill='%23D6301C'/%3E%3Cpath d='M11 4.5l2 1' stroke='%233E8E3A' stroke-width='1.6'/%3E%3Cpath d='M60 5c-1 5 0 11 3 15-4-2-6-8-5-15z' fill='%23C42817'/%3E%3Cpath d='M59 4.5l2 1' stroke='%233E8E3A' stroke-width='1.6'/%3E%3C/svg%3E")}
+#kimSec .ev-row::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Cpath d='M36 4v4' stroke='%239A7B55' stroke-width='1'/%3E%3Cpath d='M36 8c4 0 5 5 3 8-1 2-5 2-6 0-2-3-1-8 3-8z' fill='%23F4F0E2' stroke='%23D9D2BC' stroke-width='.6'/%3E%3Cpath d='M84 5c-1 5 0 11 3 15-4-2-6-8-5-15z' fill='%23E0442E'/%3E%3Cpath d='M83 4.5l2 1' stroke='%233E8E3A' stroke-width='1.6'/%3E%3C/svg%3E")}
+#xmaSec .ev-row{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Cpath d='M0 3Q24 15 48 3T96 3' fill='none' stroke='%232E5E3E' stroke-width='1.4'/%3E%3Crect x='10.5' y='7' width='3' height='3' rx='.8' fill='%23556B5C'/%3E%3Cellipse cx='12' cy='14' rx='3.2' ry='4.6' fill='%23E5484D'/%3E%3Crect x='58.5' y='7' width='3' height='3' rx='.8' fill='%23556B5C'/%3E%3Cellipse cx='60' cy='14' rx='3.2' ry='4.6' fill='%23F5B83D'/%3E%3Crect x='34.5' y='7' width='3' height='3' rx='.8' fill='%23556B5C'/%3E%3Crect x='82.5' y='7' width='3' height='3' rx='.8' fill='%23556B5C'/%3E%3C/svg%3E")}
+#xmaSec .ev-row::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 26' width='96' height='26'%3E%3Ccircle cx='36' cy='14' r='7' fill='%232FB36A' opacity='.25'/%3E%3Cellipse cx='36' cy='14' rx='3.2' ry='4.6' fill='%232F9E5B'/%3E%3Ccircle cx='84' cy='14' r='7' fill='%23FFE7A0' opacity='.35'/%3E%3Cellipse cx='84' cy='14' rx='3.2' ry='4.6' fill='%23FFF4D6' stroke='%23E8C77A' stroke-width='.6'/%3E%3C/svg%3E")}
+#fruSec .ev-row::after{animation:none}
+#kimSec .ev-row::after{animation:none}
+#pepSec .ev-actor{animation-duration:14s}
+#sunSec .ev-actor{animation-duration:11s}
+#seaSec .ev-actor{animation-duration:18s}
+#xmaSec .ev-actor{animation-duration:16s}
+#fruSec .ev-actor{animation-duration:13s}
+#kimSec .ev-actor{animation-duration:17s}
+#pepSec h2.ev-ico{--ev-ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 21L12.5 10' stroke='%23E2B977' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M12 11L16.5 3.5' stroke='%236B3A24' stroke-width='3.6' stroke-linecap='round'/%3E%3Cpath d='M18 21L11.5 10' stroke='%23E2B977' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M12 11L7.5 3.5' stroke='%23F07C9A' stroke-width='3.6' stroke-linecap='round'/%3E%3C/svg%3E")}
+#sunSec h2.ev-ico{--ev-ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(-45 12 12)'%3E%3Crect x='4' y='9' width='13' height='6' fill='%23F5C242'/%3E%3Crect x='4' y='9' width='13' height='2' fill='%23F9D774'/%3E%3Crect x='1' y='9' width='3.5' height='6' rx='1' fill='%23F08AA0'/%3E%3Crect x='4' y='9' width='1.4' height='6' fill='%23B9BCC2'/%3E%3Cpath d='M17 9l5 3-5 3z' fill='%23F1D7B0'/%3E%3Cpath d='M20.3 11l1.7 1-1.7 1z' fill='%233A3A3A'/%3E%3C/g%3E%3C/svg%3E")}
+#fruSec h2.ev-ico{--ev-ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='13.5' r='8.5' fill='%23F7931E'/%3E%3Ccircle cx='9' cy='11' r='2.2' fill='%23FFC077' opacity='.7'/%3E%3Cpath d='M12 5.5v-2' stroke='%237A5A2A' stroke-width='1.4' stroke-linecap='round'/%3E%3Cpath d='M12.5 5c2-3 6-3 7-1.5-2 2-5 2.5-7 1.5z' fill='%234CAF50'/%3E%3C/svg%3E")}
+#meaSec h2.ev-ico{--ev-ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 9c2-5 12-6 16-2 3 3 0 10-6 11-5 1-12-3-10-9z' fill='%23D9534F'/%3E%3Cpath d='M7 10c3-2 6 0 9-1M8 14c2-1 5 1 8-1' stroke='%23FBE3E0' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M20 7c1-1 2 0 2 1' stroke='%23F4E6D0' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")}
+#seaSec h2.ev-ico{--ev-ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12c3-5 10-6 14-1l4-4v10l-4-4c-4 5-11 4-14-1z' fill='%233A8FD6'/%3E%3Cpath d='M8 9c2 0 3 1 3 3' stroke='%239CCBF2' stroke-width='1.2' fill='none'/%3E%3Ccircle cx='6.5' cy='11.3' r='1.1' fill='%23fff'/%3E%3Ccircle cx='6.6' cy='11.3' r='.5' fill='%23123'/%3E%3C/svg%3E")}
+#kimSec h2.ev-ico{--ev-ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 22c-4 0-6-3-6-7 0-5 3-11 6-13 3 2 6 8 6 13 0 4-2 7-6 7z' fill='%23F3F1DC'/%3E%3Cpath d='M12 2c-3 2-6 8-6 13 0 1 0 2 .5 3C8 13 9 8 12 6c3 2 4 7 5.5 12 .5-1 .5-2 .5-3 0-5-3-11-6-13z' fill='%237CC36B'/%3E%3Cpath d='M12 6v15' stroke='%23E3E0C2' stroke-width='1'/%3E%3C/svg%3E")}
 
 /* top3 carousel */
 .top3{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 12px 4px;scrollbar-width:none}
@@ -331,6 +379,16 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
 
   <div class="divider"></div>
 
+  <section class="sec pep-sec xma-sec" id="xmaSec" hidden>
+    <div class="pep-head"><h2>크리스마스 준비 기획전</h2><span class="pep-dday" id="xmaDday"></span><small>밀어서 보기</small></div>
+    <p class="pep-sub">트리·조명부터 포장·홈파티까지, 리뷰 많고 평점 좋은 크리스마스 준비물만 10가지 골랐어요</p>
+    <div class="ev-sky" aria-hidden="true"><div class="ev-actor"><svg viewBox="0 0 140 56"><g stroke="#6B4A30" stroke-width="2.2" stroke-linecap="round" fill="none"><path d="M14 35l-4 9M19 36l1.5 8M28 36l-3 8M32 35l5 8"/><path d="M9 17l-2-7M9 17l4-6M7.5 13l-4-2M11 13l3-3"/></g><ellipse cx="22" cy="30" rx="13" ry="7" fill="#9A6B47"/><path d="M33 28l5-3" stroke="#9A6B47" stroke-width="3" stroke-linecap="round"/><path d="M12 25q-3-2-3-6" stroke="#9A6B47" stroke-width="4.5" stroke-linecap="round"/><circle cx="8" cy="21" r="5" fill="#9A6B47"/><circle cx="3.6" cy="22.5" r="2.2" fill="#E5484D" class="ev-pop"/><circle cx="7.5" cy="19.5" r=".9" fill="#2A1A10"/><path d="M12 26Q38 21 64 30" stroke="#C9A227" stroke-width="1.2" fill="none"/><circle cx="100" cy="18" r="8" fill="#2F9E5B"/><path d="M97 11q3-4 6 0" stroke="#1E7A46" stroke-width="2" fill="none"/><circle cx="83" cy="24" r="9.5" fill="#D92B3A"/><path d="M73 28h20" stroke="#fff" stroke-width="2.5"/><circle cx="78.5" cy="13.5" r="5" fill="#F6C9A8"/><path d="M73.5 14q5 11 10 0q-.5 7-5 8.5q-4.5-1.5-5-8.5z" fill="#fff"/><path d="M73 10.5q4-9 12-6l4 4.5h-3.5q-4-2.5-12.5 1.5z" fill="#D92B3A"/><rect x="72.5" y="9" width="12.5" height="3.2" rx="1.6" fill="#fff"/><circle cx="89.5" cy="9" r="2.2" fill="#fff"/><path d="M58 30h46q7 0 9-7l2-6h6l-4 14q-4 12-18 12H64q-6 0-6-6z" fill="#D92B3A"/><path d="M60 34h50" stroke="#F5B83D" stroke-width="1.6"/><path d="M54 49h58q8 0 10-6" stroke="#C9A227" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M68 43v6M100 43v6" stroke="#C9A227" stroke-width="2"/></svg></div><div class="ev-row"></div></div>
+    <div class="pep" id="xma" data-evt="xma" aria-roledescription="carousel"></div>
+    <div class="pep-foot"><span>가격은 11월 8일 기준이에요</span><span id="xmaPos"><b>1</b> / 10</span></div>
+  </section>
+
+  <div class="divider"></div>
+
   <section class="sec md-sec" id="mdSec" hidden>
     <div class="sec-head"><h2>오늘의 MD 추천</h2><small>밀어서 보기</small></div>
     <p class="md-sub">구매 후기 많고 평점 높은 상품만 골라, 리뷰에서 자주 말하는 장점을 정리했어요</p>
@@ -341,8 +399,9 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
   <div class="divider"></div>
 
   <section class="sec pep-sec" id="pepSec" hidden>
-    <div class="pep-head"><h2>빼빼로데이 기획전</h2><span class="pep-dday" id="pepDday"></span><small>밀어서 보기</small></div>
+    <div class="pep-head"><h2 class="ev-ico">빼빼로데이 기획전</h2><span class="pep-dday" id="pepDday"></span><small>밀어서 보기</small></div>
     <p class="pep-sub">맛은 다 아는 맛이라, 누구에게 줄지 정하면 고르기 쉬워요. 상황별로 10가지 골랐어요</p>
+    <div class="ev-sky" aria-hidden="true"><div class="ev-actor"><svg viewBox="0 0 140 56"><g transform="rotate(-14 60 28)"><rect x="18" y="25" width="92" height="7" rx="3.5" fill="#E2B977"/><rect x="18" y="24" width="62" height="9" rx="4.5" fill="#6B3A24"/><path d="M26 25.5l4 6M36 25.5l4 6M46 25.5l4 6M56 25.5l4 6M66 25.5l4 6" stroke="#8A5236" stroke-width="1.2"/><path d="M80 28l-9-8v16zM80 28l9-8v16z" fill="#E5484D"/><circle cx="80" cy="28" r="3" fill="#C42433"/></g><path d="M118 14c-3-2-4-4-3-5.5s3-.5 3 .8c0-1.3 2-2.3 3-.8s0 3.5-3 5.5z" fill="#F28AA0" class="ev-pop"/><path d="M130 24c-3-2-4-4-3-5.5s3-.5 3 .8c0-1.3 2-2.3 3-.8s0 3.5-3 5.5z" fill="#E5484D" class="ev-pop d2"/></svg></div><div class="ev-row"></div></div>
     <div class="pep" id="pep" data-evt="pep" aria-roledescription="carousel"></div>
     <div class="pep-foot"><span>가격은 11월 8일 기준이에요</span><span id="pepPos"><b>1</b> / 10</span></div>
   </section>
@@ -350,8 +409,9 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
   <div class="divider"></div>
 
   <section class="sec pep-sec sun-sec" id="sunSec" hidden>
-    <div class="pep-head"><h2>수능대박 기획전</h2><span class="pep-dday" id="sunDday"></span><small>밀어서 보기</small></div>
+    <div class="pep-head"><h2 class="ev-ico">수능대박 기획전</h2><span class="pep-dday" id="sunDday"></span><small>밀어서 보기</small></div>
     <p class="pep-sub">11월 19일 수능, 마음 담은 응원 선물을 상황별로 10가지 골랐어요</p>
+    <div class="ev-sky" aria-hidden="true"><div class="ev-actor"><svg viewBox="0 0 140 56"><path d="M48 30H136" stroke="#9AAAD8" stroke-width="1.4" stroke-dasharray="4 4"/><path d="M6 28L58 8 46 30z" fill="#FFFFFF" stroke="#8FA0CF" stroke-width="1.2" stroke-linejoin="round"/><path d="M6 28L46 30 40 42z" fill="#E4EAFB" stroke="#8FA0CF" stroke-width="1.2" stroke-linejoin="round"/><path d="M6 28L46 30" stroke="#8FA0CF" stroke-width="1"/><rect x="92" y="12" width="34" height="18" rx="4" fill="#D92B3A"/><text x="109" y="25.5" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="sans-serif">합격</text><path d="M92 21H62" stroke="#B4BCD8" stroke-width="1"/></svg></div><div class="ev-row"></div></div>
     <div class="pep sunc" id="sun" data-evt="sun" aria-roledescription="carousel"></div>
     <div class="pep-foot"><span>가격은 11월 8일 기준이에요</span><span id="sunPos"><b>1</b> / 10</span></div>
   </section>
@@ -359,8 +419,9 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
   <div class="divider"></div>
 
   <section class="sec pep-sec fru-sec" id="fruSec" hidden>
-    <div class="pep-head"><h2>제철 과일 기획전</h2><span class="pep-dday" id="fruDday"></span><small>밀어서 보기</small></div>
+    <div class="pep-head"><h2 class="ev-ico">제철 과일 기획전</h2><span class="pep-dday" id="fruDday"></span><small>밀어서 보기</small></div>
     <p class="pep-sub">지금 가장 맛있는 11월 제철 과일을 상황별로 10가지 골랐어요</p>
+    <div class="ev-sky" aria-hidden="true"><div class="ev-actor roll"><svg viewBox="0 0 56 56"><circle cx="28" cy="28" r="22" fill="#F7931E"/><path d="M28 6v44M6 28h44M12 12l32 32M44 12L12 44" stroke="#F9A94A" stroke-width="1.2" opacity=".6"/><circle cx="20" cy="20" r="6" fill="#FFC077" opacity=".55"/><path d="M28 6c4-6 12-6 14-3-4 4-10 5-14 3z" fill="#4CAF50"/><circle cx="28" cy="7" r="2" fill="#7A5A2A"/></svg></div><div class="ev-row"></div></div>
     <div class="pep" id="fru" data-evt="fru" aria-roledescription="carousel"></div>
     <div class="pep-foot"><span>가격은 11월 8일 기준이에요</span><span id="fruPos"><b>1</b> / 10</span></div>
   </section>
@@ -368,8 +429,9 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
   <div class="divider"></div>
 
   <section class="sec pep-sec mea-sec" id="meaSec" hidden>
-    <div class="pep-head"><h2>엄선된 고기 기획전</h2><span class="pep-dday" id="meaDday"></span><small>밀어서 보기</small></div>
+    <div class="pep-head"><h2 class="ev-ico">엄선된 고기 기획전</h2><span class="pep-dday" id="meaDday"></span><small>밀어서 보기</small></div>
     <p class="pep-sub">구이·찜·백숙까지, 리뷰 많은 고기만 상황별로 10가지 골랐어요</p>
+    <div class="ev-sky" aria-hidden="true"><div class="ev-actor still"><svg viewBox="0 0 140 56"><path class="ev-stm" d="M48 22c-4-4 4-7 0-11s4-7 0-10" stroke="#C9B9B0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="ev-stm d2" d="M70 22c-4-4 4-7 0-11s4-7 0-10" stroke="#C9B9B0" stroke-width="2" fill="none" stroke-linecap="round"/><path class="ev-stm d3" d="M92 22c-4-4 4-7 0-11s4-7 0-10" stroke="#C9B9B0" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M34 34c3-9 25-11 36-6 8 4 2 15-12 16-11 1-27-2-24-10z" fill="#C8473F"/><path d="M41 33c6-3 12 0 19-2M44 38c5-2 10 1 17-1" stroke="#F7D9D4" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M78 31c3-8 22-9 30-4 6 4 1 13-10 13-9 0-22-2-20-9z" fill="#B23A33"/><path d="M84 31c5-2 10 0 15-1" stroke="#F7D9D4" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M36 42H110" stroke="#3B2E29" stroke-width="2" opacity=".5"/></svg></div><div class="ev-row"></div></div>
     <div class="pep" id="mea" data-evt="mea" aria-roledescription="carousel"></div>
     <div class="pep-foot"><span>가격은 11월 8일 기준이에요</span><span id="meaPos"><b>1</b> / 10</span></div>
   </section>
@@ -377,8 +439,9 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
   <div class="divider"></div>
 
   <section class="sec pep-sec sea-sec" id="seaSec" hidden>
-    <div class="pep-head"><h2>쌀쌀한 땐 수산물 기획전</h2><span class="pep-dday" id="seaDday"></span><small>밀어서 보기</small></div>
+    <div class="pep-head"><h2 class="ev-ico">쌀쌀한 땐 수산물 기획전</h2><span class="pep-dday" id="seaDday"></span><small>밀어서 보기</small></div>
     <p class="pep-sub">찬바람 불 때 더 맛있는 수산물을 상황별로 10가지 골랐어요</p>
+    <div class="ev-sky" aria-hidden="true"><div class="ev-actor"><svg viewBox="0 0 140 56"><circle class="ev-bub" cx="12" cy="20" r="2.6" fill="none" stroke="#7CC7D0" stroke-width="1.2"/><circle class="ev-bub d2" cx="18" cy="14" r="1.8" fill="none" stroke="#7CC7D0" stroke-width="1.2"/><circle class="ev-bub d3" cx="10" cy="10" r="1.4" fill="none" stroke="#7CC7D0" stroke-width="1.2"/><path d="M22 30c10-14 38-16 54-2l14-11v26l-14-11c-16 14-44 12-54-2z" fill="#3A8FD6"/><path d="M76 28l14-11v26z" fill="#2E73B0" class="ev-tail"/><path d="M44 18c6-6 14-6 18 0z" fill="#2E73B0"/><path d="M36 33c10 4 22 4 32 0" stroke="#9CCBF2" stroke-width="1.4" fill="none"/><circle cx="32" cy="27" r="3" fill="#fff"/><circle cx="31.5" cy="27" r="1.4" fill="#123"/></svg></div><div class="ev-row"></div></div>
     <div class="pep" id="sea" data-evt="sea" aria-roledescription="carousel"></div>
     <div class="pep-foot"><span>가격은 11월 8일 기준이에요</span><span id="seaPos"><b>1</b> / 10</span></div>
   </section>
@@ -386,20 +449,11 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
   <div class="divider"></div>
 
   <section class="sec pep-sec kim-sec" id="kimSec" hidden>
-    <div class="pep-head"><h2>김장 준비 기획전</h2><span class="pep-dday" id="kimDday"></span><small>밀어서 보기</small></div>
+    <div class="pep-head"><h2 class="ev-ico">김장 준비 기획전</h2><span class="pep-dday" id="kimDday"></span><small>밀어서 보기</small></div>
     <p class="pep-sub">절임배추부터 양념·도구·보관까지, 김장에 필요한 것만 10가지 골랐어요</p>
+    <div class="ev-sky" aria-hidden="true"><div class="ev-actor hop"><svg viewBox="0 0 56 56"><path d="M28 52c-11 0-15-8-15-17 0-13 7-26 15-31 8 5 15 18 15 31 0 9-4 17-15 17z" fill="#F3F1DC" stroke="#DCD8BE" stroke-width="1"/><path d="M28 4c-8 5-15 18-15 31 0 3 .5 5 1.5 7C17 30 21 18 28 13c7 5 11 17 13.5 29 1-2 1.5-4 1.5-7 0-13-7-26-15-31z" fill="#7CC36B"/><path d="M28 13v38" stroke="#E0DCC0" stroke-width="1.4"/><path d="M28 4c-3 3-5 6-6 9M28 4c3 3 5 6 6 9" stroke="#5FA84F" stroke-width="1.2" fill="none"/></svg></div><div class="ev-row"></div></div>
     <div class="pep" id="kim" data-evt="kim" aria-roledescription="carousel"></div>
     <div class="pep-foot"><span>가격은 11월 8일 기준이에요</span><span id="kimPos"><b>1</b> / 10</span></div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section class="sec pep-sec xma-sec" id="xmaSec" hidden>
-    <div class="pep-head"><h2>크리스마스 준비 기획전</h2><span class="pep-dday" id="xmaDday"></span><small>밀어서 보기</small></div>
-    <p class="pep-sub">트리·조명부터 포장·홈파티까지, 리뷰 많고 평점 좋은 크리스마스 준비물만 10가지 골랐어요</p>
-    <div class="xma-sky" aria-hidden="true"><div class="xma-sleigh"><svg viewBox="0 0 140 56" xmlns="http://www.w3.org/2000/svg"><g stroke="#6B4A30" stroke-width="2.2" stroke-linecap="round" fill="none"><path d="M14 35l-4 9M19 36l1.5 8M28 36l-3 8M32 35l5 8"/><path d="M9 17l-2-7M9 17l4-6M7.5 13l-4-2M11 13l3-3"/></g><ellipse cx="22" cy="30" rx="13" ry="7" fill="#9A6B47"/><path d="M33 28l5-3" stroke="#9A6B47" stroke-width="3" stroke-linecap="round"/><path d="M12 25q-3-2-3-6" stroke="#9A6B47" stroke-width="4.5" stroke-linecap="round"/><circle cx="8" cy="21" r="5" fill="#9A6B47"/><circle cx="3.6" cy="22.5" r="2.2" fill="#E5484D"/><circle cx="7.5" cy="19.5" r=".9" fill="#2A1A10"/><path d="M12 26Q38 21 64 30" stroke="#C9A227" stroke-width="1.2" fill="none"/><circle cx="100" cy="18" r="8" fill="#2F9E5B"/><path d="M97 11q3-4 6 0" stroke="#1E7A46" stroke-width="2" fill="none"/><circle cx="83" cy="24" r="9.5" fill="#D92B3A"/><path d="M73 28h20" stroke="#fff" stroke-width="2.5"/><circle cx="78.5" cy="13.5" r="5" fill="#F6C9A8"/><path d="M73.5 14q5 11 10 0q-.5 7-5 8.5q-4.5-1.5-5-8.5z" fill="#fff"/><path d="M73 10.5q4-9 12-6l4 4.5h-3.5q-4-2.5-12.5 1.5z" fill="#D92B3A"/><rect x="72.5" y="9" width="12.5" height="3.2" rx="1.6" fill="#fff"/><circle cx="89.5" cy="9" r="2.2" fill="#fff"/><path d="M58 30h46q7 0 9-7l2-6h6l-4 14q-4 12-18 12H64q-6 0-6-6z" fill="#D92B3A"/><path d="M60 34h50" stroke="#F5B83D" stroke-width="1.6"/><path d="M54 49h58q8 0 10-6" stroke="#C9A227" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M68 43v6M100 43v6" stroke="#C9A227" stroke-width="2"/></svg></div><div class="xma-lights"></div></div>
-    <div class="pep" id="xma" data-evt="xma" aria-roledescription="carousel"></div>
-    <div class="pep-foot"><span>가격은 11월 8일 기준이에요</span><span id="xmaPos"><b>1</b> / 10</span></div>
   </section>
 
   <div class="divider"></div>
