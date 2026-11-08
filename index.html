@@ -267,6 +267,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #seaSec h2.ev-ico{--ev-ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12c3-5 10-6 14-1l4-4v10l-4-4c-4 5-11 4-14-1z' fill='%233A8FD6'/%3E%3Cpath d='M8 9c2 0 3 1 3 3' stroke='%239CCBF2' stroke-width='1.2' fill='none'/%3E%3Ccircle cx='6.5' cy='11.3' r='1.1' fill='%23fff'/%3E%3Ccircle cx='6.6' cy='11.3' r='.5' fill='%23123'/%3E%3C/svg%3E")}
 #kimSec h2.ev-ico{--ev-ico:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 22c-4 0-6-3-6-7 0-5 3-11 6-13 3 2 6 8 6 13 0 4-2 7-6 7z' fill='%23F3F1DC'/%3E%3Cpath d='M12 2c-3 2-6 8-6 13 0 1 0 2 .5 3C8 13 9 8 12 6c3 2 4 7 5.5 12 .5-1 .5-2 .5-3 0-5-3-11-6-13z' fill='%237CC36B'/%3E%3Cpath d='M12 6v15' stroke='%23E3E0C2' stroke-width='1'/%3E%3C/svg%3E")}
 
+.ev-more{display:flex;align-items:center;justify-content:center;height:44px;margin:12px 20px 0;border-radius:12px;background:var(--card);box-shadow:inset 0 0 0 1px var(--g200);color:var(--g800);font-size:14px;font-weight:700;text-decoration:none}
+.ev-more:active{transform:scale(.98)}
+
 /* top3 carousel */
 .top3{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 12px 4px;scrollbar-width:none}
 .top3::-webkit-scrollbar{display:none}
@@ -385,6 +388,7 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
     <div class="ev-sky" aria-hidden="true"><div class="ev-actor"><svg viewBox="0 0 140 56"><g stroke="#6B4A30" stroke-width="2.2" stroke-linecap="round" fill="none"><path d="M14 35l-4 9M19 36l1.5 8M28 36l-3 8M32 35l5 8"/><path d="M9 17l-2-7M9 17l4-6M7.5 13l-4-2M11 13l3-3"/></g><ellipse cx="22" cy="30" rx="13" ry="7" fill="#9A6B47"/><path d="M33 28l5-3" stroke="#9A6B47" stroke-width="3" stroke-linecap="round"/><path d="M12 25q-3-2-3-6" stroke="#9A6B47" stroke-width="4.5" stroke-linecap="round"/><circle cx="8" cy="21" r="5" fill="#9A6B47"/><circle cx="3.6" cy="22.5" r="2.2" fill="#E5484D" class="ev-pop"/><circle cx="7.5" cy="19.5" r=".9" fill="#2A1A10"/><path d="M12 26Q38 21 64 30" stroke="#C9A227" stroke-width="1.2" fill="none"/><circle cx="100" cy="18" r="8" fill="#2F9E5B"/><path d="M97 11q3-4 6 0" stroke="#1E7A46" stroke-width="2" fill="none"/><circle cx="83" cy="24" r="9.5" fill="#D92B3A"/><path d="M73 28h20" stroke="#fff" stroke-width="2.5"/><circle cx="78.5" cy="13.5" r="5" fill="#F6C9A8"/><path d="M73.5 14q5 11 10 0q-.5 7-5 8.5q-4.5-1.5-5-8.5z" fill="#fff"/><path d="M73 10.5q4-9 12-6l4 4.5h-3.5q-4-2.5-12.5 1.5z" fill="#D92B3A"/><rect x="72.5" y="9" width="12.5" height="3.2" rx="1.6" fill="#fff"/><circle cx="89.5" cy="9" r="2.2" fill="#fff"/><path d="M58 30h46q7 0 9-7l2-6h6l-4 14q-4 12-18 12H64q-6 0-6-6z" fill="#D92B3A"/><path d="M60 34h50" stroke="#F5B83D" stroke-width="1.6"/><path d="M54 49h58q8 0 10-6" stroke="#C9A227" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M68 43v6M100 43v6" stroke="#C9A227" stroke-width="2"/></svg></div><div class="ev-row"></div></div>
     <div class="pep" id="xma" data-evt="xma" aria-roledescription="carousel"></div>
     <div class="pep-foot"><span>가격은 11월 8일 기준이에요</span><span id="xmaPos"><b>1</b> / 10</span></div>
+    <a class="ev-more" href="/xmas">리뷰 요약까지 자세히 보기 · 크리스마스 기획전 페이지 →</a>
   </section>
 
   <div class="divider"></div>
@@ -483,7 +487,7 @@ footer{padding:24px 24px 8px;font-size:12px;color:var(--g600);line-height:1.6}
 
   <div class="about">
     <strong>이렇게 골라요</strong>
-    쿠팡 골드박스 상품만 · 할인율 높은 순 · 주류·성인용품·의약품 제외<br>현직 커머스 가격 담당자가 운영해요<br><a href="https://www.threads.com/@taste_trip_diary" target="_blank" rel="noopener" id="threadsLink">스레드 @taste_trip_diary에서 매일 알림 받기</a>
+    쿠팡 골드박스 상품만 · 할인율 높은 순 · 주류·성인용품·의약품 제외<br>현직 커머스 가격 담당자가 운영해요<br><a href="https://www.threads.com/@ddakdeal" target="_blank" rel="noopener" id="threadsLink">스레드 @ddakdeal에서 매일 알림 받기</a>
   </div>
 
   <section class="faq" aria-label="자주 묻는 질문">
@@ -699,14 +703,17 @@ document.getElementById("share").onclick = async () => {
 };
 
 // analytics: 상품 클릭 이벤트
-document.addEventListener("click", e => {
+const onDealClick = e => {
+  if (e.type === "auxclick" && e.button !== 1) return;
   const a = e.target.closest("a[data-id]"); if (!a || typeof gtag !== "function") return;
   const ev = a.closest("[data-evt]");
   const section = a.closest(".md") ? "md" : ev ? ev.dataset.evt : a.closest(".top3") ? "top3" : "list";
   const d = (section === "md" ? mdItems : ev ? EVT[section] : items).find(x => x.id === a.dataset.id); if (!d) return;
   const pos = [...(ev ? ev : document).querySelectorAll(ev ? "a[data-id]" : "." + section + " a[data-id]")].indexOf(a) + 1;
   gtag("event", "deal_click", { item_id: d.id, item_name: d.name, item_category: d.cat, discount_rate: d.rate, price: d.sale, section, position: pos, filter_cat: state.cat, sort: state.sort, transport_type: "beacon" });
-});
+};
+document.addEventListener("click", onDealClick);
+document.addEventListener("auxclick", onDealClick);
 document.getElementById("share").addEventListener("click", () => { if (typeof gtag === "function") gtag("event", "share_click"); });
 </script>
 </body>
